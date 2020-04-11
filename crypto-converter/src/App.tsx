@@ -3,6 +3,7 @@ import Container from '@material-ui/core/Container';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import {makeStyles, createStyles, Theme} from '@material-ui/core/styles';
+import axios from 'axios';
 import TextField from '@material-ui/core/TextField';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -66,6 +67,19 @@ const rows = [
 function App() {
 
     const classes = useStyles();
+    const[data,setData]=React.useState();
+    //как только компонент отрендерется 1 раз будет выполнятся функция. Если ни 1 переменная не обновится то не будет выполнения функции
+    React.useEffect(() =>{
+
+       axios.get('https://min-api.cryptocompare.com/data/top/totalvolfull?limit=10&tsym=USD')
+           .then(({data}) =>{
+               const coins =data.Data;
+               console.log(coins)
+
+           })
+    }, [classes]);
+
+
     return (
         <Container maxWidth="lg" className={classes.root}>
 
