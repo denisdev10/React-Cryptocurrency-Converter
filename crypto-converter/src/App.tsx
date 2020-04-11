@@ -50,30 +50,31 @@ const useStyles = makeStyles((theme: Theme) =>
 
 
 
+// сначало
+type TCoin ={
+    name: string;
+    fullName: string;
+    ImageUrl: string;
+    price: number;
+    volume24Hour: number;
 
-function createData(name: string, calories: number, fat: number, carbs: number, protein: number) {
-    return { name, calories, fat, carbs, protein };
+
 }
-
-const rows = [
-    createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-    createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-    createData('Eclair', 262, 16.0, 24, 6.0),
-    createData('Cupcake', 305, 3.7, 67, 4.3),
-    createData('Gingerbread', 356, 16.0, 49, 3.9),
-];
+// Tcoin - типы свойст
+//чтобы показывало ошибки, в массиве не может быть другого объекта кроме этого
 
 
 function App() {
 
-    const classes = useStyles();
-    const[data,setData]=React.useState();
+    const classes = useStyles(); //<> - какого типа будут ответы typescript
+    const[allCoins,setAllCoins]=React.useState<TCoin[] | null>(null); //allcoins должен быть только массивом  tcoin или null
     //как только компонент отрендерется 1 раз будет выполнятся функция. Если ни 1 переменная не обновится то не будет выполнения функции
     React.useEffect(() =>{
 
        axios.get('https://min-api.cryptocompare.com/data/top/totalvolfull?limit=10&tsym=USD')
            .then(({data}) =>{
                const coins =data.Data;
+               setAllCoins(coins); //как только компанент отрендерется ты должен отправить гет запрос и вытащить инфу из ответа, из всего ответа вытащить DAta и передаем в coins, далее сохраняем коинс в переменной allcoins что все приложение знало какие данные мы получили потом производим ререндер
                console.log(coins)
 
            })
@@ -99,7 +100,7 @@ function App() {
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {rows.map((row) => (
+                                {allCoins.map((row) => (
                                     <TableRow key={row.name}>
                                         <TableCell component="th" scope="row">
                                             {row.name}
