@@ -2,7 +2,7 @@
   "name": "crypto-converter",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://artemignatiev908976.github.io/cryptocurrency_converter_ReactJS_MobX_Material-UI/",
+  "homepage": "https://artemignatiev908976.github.io/cryptocurrency_converter_ReactJS_MobX_Material-UI/crypto-converter",
   "dependencies": {
     "@material-ui/core": "^4.9.10",
     "@testing-library/jest-dom": "^4.2.4",
