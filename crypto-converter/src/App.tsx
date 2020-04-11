@@ -47,6 +47,7 @@ const useStyles = makeStyles((theme: Theme) =>
         currencyIcon:{
             width:18,
             height:18,
+            borderRadius:30,
         }
     }),
 );
@@ -81,8 +82,8 @@ function App() {
                         name: coin.CoinInfo.Name,
                         fullName: coin.CoinInfo.FullName,
                         imageUrl: `https://www.cryptocompare.com/${coin.CoinInfo.ImageUrl}`,
-                        price: coin.RAW.USD.PRICE,
-                        volume24Hour: coin.RAW.USD.PRICE.VOLUME24HOUR,
+                        price: coin.RAW.USD.PRICE.toFixed(3),
+                        volume24Hour: parseInt(coin.RAW.USD.VOLUMEDAY),
 
                     }; //преобразовываем все объекты
                     return obj;
@@ -111,7 +112,7 @@ function App() {
                                     <TableCell align="left">Name</TableCell>
                                     <TableCell align="left">Fullname</TableCell>
                                     <TableCell align="left">Price</TableCell>
-                                    <TableCell align="left">volume24hour</TableCell>
+                                    <TableCell align="left">Volume day</TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
@@ -120,8 +121,8 @@ function App() {
                                         <TableCell><img className={classes.currencyIcon} src={coin.imageUrl} alt="Coin icon"/></TableCell>
                                         <TableCell align="left">{coin.name}</TableCell>
                                         <TableCell align="left">{coin.fullName}</TableCell>
-                                        <TableCell align="left">{coin.price}</TableCell>
-                                        <TableCell align="left">{coin.volume24Hour}</TableCell>
+                                        <TableCell align="left">$ {coin.price}</TableCell>
+                                        <TableCell align="left">${coin.volume24Hour}</TableCell>
                                     </TableRow>
                                 ))}
                             </TableBody>
