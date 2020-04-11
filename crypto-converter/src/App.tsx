@@ -48,10 +48,8 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 
-
-
 // сначало
-type TCoin ={
+type TCoin = {
     name: string;
     fullName: string;
     ImageUrl: string;
@@ -67,17 +65,30 @@ type TCoin ={
 function App() {
 
     const classes = useStyles(); //<> - какого типа будут ответы typescript
-    const[allCoins,setAllCoins]=React.useState<TCoin[] | null>(null); //allcoins должен быть только массивом  tcoin или null
+    const [allCoins, setAllCoins] = React.useState<TCoin[]>([]); //allcoins должен быть только массивом  tcoin или null
     //как только компонент отрендерется 1 раз будет выполнятся функция. Если ни 1 переменная не обновится то не будет выполнения функции
-    React.useEffect(() =>{
+    React.useEffect(() => {
 
-       axios.get('https://min-api.cryptocompare.com/data/top/totalvolfull?limit=10&tsym=USD')
-           .then(({data}) =>{
-               const coins =data.Data;
-               setAllCoins(coins); //как только компанент отрендерется ты должен отправить гет запрос и вытащить инфу из ответа, из всего ответа вытащить DAta и передаем в coins, далее сохраняем коинс в переменной allcoins что все приложение знало какие данные мы получили потом производим ререндер
-               console.log(coins)
+        axios.get('https://min-api.cryptocompare.com/data/top/totalvolfull?limit=10&tsym=USD')
+            .then(({data}) => {
+                const coins = data.Data.map((coin: any) => {
 
-           })
+                    const obj = {
+                        name: coin.CoinInfo.Name,
+                        fullName: coin.CoinInfo.FullName,
+                        ImageUrl:`http://www.cryptocompare.com/${coin.CoinInfo.ImageUrl}`,
+                        price: coin.RAW.USD.PRICE,
+                        volume24Hour: coin.RAW.USD.PRICE.VOLUME24HOUR,
+
+                }; //преобразовываем все объекты
+                    return obj;
+
+
+                });
+                setAllCoins(coins); //как только компанент отрендерется ты должен отправить гет запрос и вытащить инфу из ответа, из всего ответа вытащить DAta и передаем в coins, далее сохраняем коинс в переменной allcoins что все приложение знало какие данные мы получили потом производим ререндер
+                console.log(coins);
+
+            })
     }, [classes]);
 
 
