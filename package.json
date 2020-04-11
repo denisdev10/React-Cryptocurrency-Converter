@@ -2,7 +2,7 @@
   "name": "crypto-converter",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://artemignatiev908976.github.io/cryptocurrency_converter_ReactJS_MobX_Material-UI/",
+  "homepage": "https://github.com/ArtemIgnatiev908976/cryptocurrency_converter_ReactJS_MobX_Material-UI",
   "dependencies": {
     "@material-ui/core": "^4.9.10",
     "@testing-library/jest-dom": "^4.2.4",
@@ -20,12 +20,13 @@
     "typescript": "^3.7.5"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "eject": "react-scripts eject"
+
   },
   "eslintConfig": {
     "extends": "react-app"
