@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/cryptocurrency_converter_ReactJS_MobX_Material-UI/static/css/main.5ecd60fb.chunk.css",
-    "main.js": "/cryptocurrency_converter_ReactJS_MobX_Material-UI/static/js/main.3753537b.chunk.js",
-    "main.js.map": "/cryptocurrency_converter_ReactJS_MobX_Material-UI/static/js/main.3753537b.chunk.js.map",
+    "main.css": "/cryptocurrency_converter_ReactJS_MobX_Material-UI/static/css/main.b2283f6b.chunk.css",
+    "main.js": "/cryptocurrency_converter_ReactJS_MobX_Material-UI/static/js/main.f920a612.chunk.js",
+    "main.js.map": "/cryptocurrency_converter_ReactJS_MobX_Material-UI/static/js/main.f920a612.chunk.js.map",
     "runtime-main.js": "/cryptocurrency_converter_ReactJS_MobX_Material-UI/static/js/runtime-main.b0dbcc1c.js",
     "runtime-main.js.map": "/cryptocurrency_converter_ReactJS_MobX_Material-UI/static/js/runtime-main.b0dbcc1c.js.map",
-    "static/js/2.abc0f730.chunk.js": "/cryptocurrency_converter_ReactJS_MobX_Material-UI/static/js/2.abc0f730.chunk.js",
-    "static/js/2.abc0f730.chunk.js.map": "/cryptocurrency_converter_ReactJS_MobX_Material-UI/static/js/2.abc0f730.chunk.js.map",
+    "static/js/2.36ac1a20.chunk.js": "/cryptocurrency_converter_ReactJS_MobX_Material-UI/static/js/2.36ac1a20.chunk.js",
+    "static/js/2.36ac1a20.chunk.js.map": "/cryptocurrency_converter_ReactJS_MobX_Material-UI/static/js/2.36ac1a20.chunk.js.map",
     "index.html": "/cryptocurrency_converter_ReactJS_MobX_Material-UI/index.html",
-    "precache-manifest.3ba44ea4d7baec9198dec144d28dc551.js": "/cryptocurrency_converter_ReactJS_MobX_Material-UI/precache-manifest.3ba44ea4d7baec9198dec144d28dc551.js",
+    "precache-manifest.b3602ae6d02f13cdee0ea16742bb6aae.js": "/cryptocurrency_converter_ReactJS_MobX_Material-UI/precache-manifest.b3602ae6d02f13cdee0ea16742bb6aae.js",
     "service-worker.js": "/cryptocurrency_converter_ReactJS_MobX_Material-UI/service-worker.js",
-    "static/css/main.5ecd60fb.chunk.css.map": "/cryptocurrency_converter_ReactJS_MobX_Material-UI/static/css/main.5ecd60fb.chunk.css.map",
-    "static/js/2.abc0f730.chunk.js.LICENSE.txt": "/cryptocurrency_converter_ReactJS_MobX_Material-UI/static/js/2.abc0f730.chunk.js.LICENSE.txt"
+    "static/css/main.b2283f6b.chunk.css.map": "/cryptocurrency_converter_ReactJS_MobX_Material-UI/static/css/main.b2283f6b.chunk.css.map",
+    "static/js/2.36ac1a20.chunk.js.LICENSE.txt": "/cryptocurrency_converter_ReactJS_MobX_Material-UI/static/js/2.36ac1a20.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.b0dbcc1c.js",
-    "static/js/2.abc0f730.chunk.js",
-    "static/css/main.5ecd60fb.chunk.css",
-    "static/js/main.3753537b.chunk.js"
+    "static/js/2.36ac1a20.chunk.js",
+    "static/css/main.b2283f6b.chunk.css",
+    "static/js/main.f920a612.chunk.js"
   ]
 }

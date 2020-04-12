@@ -122,7 +122,7 @@ const ConverterBlock: React.FC<IConverterBlock> = inject(
                         <Select
                             onChange={e => setSelectedOutCoin(e.target.value as string)}
                             value={selectedOutCoin}>
-                            <MenuItem value="USD">USD</MenuItem>
+                            {/*<MenuItem value="0">U12</MenuItem>*/}
                             {coins.map(name => (
                                 <MenuItem value={name}>{name}</MenuItem>
                             ))}
