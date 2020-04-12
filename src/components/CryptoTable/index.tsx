@@ -13,17 +13,18 @@ import CurrenciesStore from "../../stores/currenciesStore";
 
 type ICryptoTable = {
 
-        classes:any;
+    classes: any;
     currenciesStore?: CurrenciesStore;
+
 };
 
 
 
-
+//
 const colors:{[key:string]: string} ={
 
-    red: '#d8ffc4',
-    green: '#d8ff4',
+    red: 'b54141',
+    green: 'd8ff4',
 };
 
 
@@ -36,16 +37,20 @@ const CryptoTable =  inject('currenciesStore')(
             const items: TCoin[] = currenciesStore!.getItems || [];
             const diffObj: TCoinDiff=currenciesStore!.getDiffObj;
 
-            currenciesStore?.setItems();
+            // currenciesStore?.setItems();
+            ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-            console.log(JSON.stringify(items))
+
 
 
             React.useEffect(() => {
 
                if(currenciesStore){
                    currenciesStore.fetchCoins();
+                   setInterval(()=>{
+                       currenciesStore.fetchCoins();
+                   },10*1000) //каждые 30 сек обновление
                }
 
             }, []);
@@ -73,7 +78,7 @@ const CryptoTable =  inject('currenciesStore')(
                                                         alt="Coin icon"/></TableCell>
                                         <TableCell align="left">{coin.name}</TableCell>
                                         <TableCell align="left">{coin.fullName}</TableCell>
-                                        <TableCell className={diffObj[coin.name]} align="left">$ {coin.price}</TableCell>
+                                        <TableCell className={diffObj[coin.name] && classes[`${diffObj[coin.name]}Column`]} align="left">$ {coin.price}</TableCell>
                                         <TableCell align="left">${coin.volume24Hour}</TableCell>
                                     </TableRow>
                                 ))}

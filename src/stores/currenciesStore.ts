@@ -30,8 +30,11 @@ class CurrenciesStore {
     setItems = (items: TCoin[]): void => {
         this.items = items;
         // если не нашел то предаю Tcoin из нового объекта и пусть новый объект сравнивается с собой и следовательно изменений не произошло (доп проверка)
-        this.diffObj = this.diffCurrencies(this.items, items).reduce((initObj: TCoinDiff, newObj: TCoin) => {
-                const oldObj: TCoin = this.items.find(itemobj => itemobj.name === newObj.name) || newObj;
+        this.diffObj = this.diffCurrencies(this.items, items).reduce(
+            (initObj: TCoinDiff,obj: TCoin) => {
+                //берем старый объект , вытаскиваем его имя, находим в новом массиве где произошло обновление и актуальное передаем
+                const newObj: TCoin=items.find(o=>o.name===obj.name)! ;
+                const oldObj: TCoin = this.items.find(itemObj => itemObj.name === newObj.name)!;
                 const color: string = newObj.price === oldObj.price ? '' : newObj.price > oldObj.price ? 'green' : 'red'; //если новый объект больше старого то зеленая если иначе то красная
                 initObj[newObj.name] = color;
                 return initObj;
@@ -39,6 +42,9 @@ class CurrenciesStore {
             },
             {},
         );
+        this.items =items;
+
+
     };  //получаем массив TCoin и эта функция ничего не возращает
     @action
     fetchCoins = () => {
@@ -60,8 +66,8 @@ class CurrenciesStore {
 
 
                 });
-                this.items = coins; //как только компанент отрендерется ты должен отправить гет запрос и вытащить инфу из ответа, из всего ответа вытащить DAta и передаем в coins, далее сохраняем коинс в переменной allcoins что все приложение знало какие данные мы получили потом производим ререндер
-                console.log(coins);
+                this.setItems(coins); //как только компанент отрендерется ты должен отправить гет запрос и вытащить инфу из ответа, из всего ответа вытащить DAta и передаем в coins, далее сохраняем коинс в переменной allcoins что все приложение знало какие данные мы получили потом производим ререндер
+
 
             });
 
