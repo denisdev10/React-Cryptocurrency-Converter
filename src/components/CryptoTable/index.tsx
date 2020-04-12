@@ -7,44 +7,62 @@ import TableCell from "@material-ui/core/TableCell";
 import TableBody from "@material-ui/core/TableBody";
 import Grid from "@material-ui/core/Grid";
 import React from "react";
+import {observer, inject} from 'mobx-react'
 import {TCoin} from '../../types'
+import CurrenciesStore from "../../stores/currenciesStore";
 
-type ICryptoTable ={
-    items: TCoin[];
-    classes: any;
+type ICryptoTable = {
+
+        classes:any;
+    currenciesStore?: CurrenciesStore;
 }
+// копанент инжектит саму стору подключает ее и обсервер получает пропс
+const CryptoTable =  inject('currenciesStore')(
+    observer(({classes, currenciesStore}:ICryptoTable) => {
+            const items: TCoin[] = currenciesStore!.getItems || [];
 
-const CryptoTable: React.FC<ICryptoTable> = ({items, classes}) => {
-    return (
-        <TableContainer component={Paper}>
-            <Table className={classes.table} aria-label="simple table">
-                <TableHead>
-                    <TableRow>
-                        <TableCell></TableCell>
-                        <TableCell align="left">Name</TableCell>
-                        <TableCell align="left">Fullname</TableCell>
-                        <TableCell align="left">Price</TableCell>
-                        <TableCell align="left">Volume day</TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {!items.length
-                        ? 'Загрузка...'
-                        : items.map((coin) => (
-                            <TableRow key={coin.name}>
-                                <TableCell><img className={classes.currencyIcon} src={coin.imageUrl}
-                                                alt="Coin icon"/></TableCell>
-                                <TableCell align="left">{coin.name}</TableCell>
-                                <TableCell align="left">{coin.fullName}</TableCell>
-                                <TableCell align="left">$ {coin.price}</TableCell>
-                                <TableCell align="left">${coin.volume24Hour}</TableCell>
+            React.useEffect(() => {
+
+               if(currenciesStore){
+                   currenciesStore.fetchCoins();
+               }
+
+            }, []);
+
+
+//подключаем компонент к хранилищу
+            return (
+                <TableContainer component={Paper}>
+                    <Table className={classes.table} aria-label="simple table">
+                        <TableHead>
+                            <TableRow>
+                                <TableCell></TableCell>
+                                <TableCell align="left">Name</TableCell>
+                                <TableCell align="left">Fullname</TableCell>
+                                <TableCell align="left">Price</TableCell>
+                                <TableCell align="left">Volume day</TableCell>
                             </TableRow>
-                        ))}
-                </TableBody>
-            </Table>
-        </TableContainer>
+                        </TableHead>
+                        <TableBody>
+                            {!items.length
+                                ? 'Загрузка...'
+                                : items.map((coin) => (
+                                    <TableRow key={coin.name}>
+                                        <TableCell><img className={classes.currencyIcon} src={coin.imageUrl}
+                                                        alt="Coin icon"/></TableCell>
+                                        <TableCell align="left">{coin.name}</TableCell>
+                                        <TableCell align="left">{coin.fullName}</TableCell>
+                                        <TableCell align="left">$ {coin.price}</TableCell>
+                                        <TableCell align="left">${coin.volume24Hour}</TableCell>
+                                    </TableRow>
+                                ))}
+                        </TableBody>
+                    </Table>
+                </TableContainer>
+            )
+        }
     )
-}
+);
 
 
 export default CryptoTable;

@@ -29,32 +29,33 @@ import useStyles from './styles'
 
 function App() {
 
-    const classes = useStyles(); //<> - какого типа будут ответы typescript
-    const [allCoins, setAllCoins] = React.useState<TCoin[]>([]); //allcoins должен быть только массивом  tcoin или null
+    const classes: any = useStyles(); //<> - какого типа будут ответы typescript
+    //allcoins должен быть только массивом  tcoin или null
     //как только компонент отрендерется 1 раз будет выполнятся функция. Если ни 1 переменная не обновится то не будет выполнения функции
-    React.useEffect(() => {
-
-        axios.get('https://min-api.cryptocompare.com/data/top/totalvolfull?limit=10&tsym=USD')
-            .then(({data}) => {
-                const coins: TCoin[] = data.Data.map((coin: any) => {
-
-                    const obj: TCoin = {
-                        name: coin.CoinInfo.Name,
-                        fullName: coin.CoinInfo.FullName,
-                        imageUrl: `https://www.cryptocompare.com/${coin.CoinInfo.ImageUrl}`,
-                        price: coin.RAW.USD.PRICE.toFixed(3),
-                        volume24Hour: parseInt(coin.RAW.USD.VOLUMEDAY),
-
-                    }; //преобразовываем все объекты
-                    return obj;
-
-
-                });
-                setAllCoins(coins); //как только компанент отрендерется ты должен отправить гет запрос и вытащить инфу из ответа, из всего ответа вытащить DAta и передаем в coins, далее сохраняем коинс в переменной allcoins что все приложение знало какие данные мы получили потом производим ререндер
-                console.log(coins);
-
-            })
-    }, [classes]);
+    // React.useEffect(() => {
+    //
+    //     // axios
+    //     //     .get('https://min-api.cryptocompare.com/data/top/totalvolfull?limit=10&tsym=USD')
+    //     //     .then(({data}) => {
+    //     //         const coins: TCoin[] = data.Data.map((coin: any) => {
+    //     //
+    //     //             const obj: TCoin = {
+    //     //                 name: coin.CoinInfo.Name,
+    //     //                 fullName: coin.CoinInfo.FullName,
+    //     //                 imageUrl: `https://www.cryptocompare.com/${coin.CoinInfo.ImageUrl}`,
+    //     //                 price: coin.RAW.USD.PRICE.toFixed(3),
+    //     //                 volume24Hour: parseInt(coin.RAW.USD.VOLUMEDAY),
+    //     //
+    //     //             }; //преобразовываем все объекты
+    //     //             return obj;
+    //     //
+    //     //
+    //     //         });
+    //     //         setAllCoins(coins); //как только компанент отрендерется ты должен отправить гет запрос и вытащить инфу из ответа, из всего ответа вытащить DAta и передаем в coins, далее сохраняем коинс в переменной allcoins что все приложение знало какие данные мы получили потом производим ререндер
+    //     //         console.log(coins);
+    //     //
+    //     //     })
+    // }, [classes]);
 
 
     return (
@@ -63,7 +64,7 @@ function App() {
 
             <Grid container spacing={3}>
                 <Grid item xs={8}>
-                    <CryptoTable classes={classes} items={allCoins}/>
+                    <CryptoTable classes={classes} />
 
                 </Grid>
                 <Grid item xs={4}>
