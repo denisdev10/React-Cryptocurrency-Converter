@@ -8,7 +8,7 @@ import TableBody from "@material-ui/core/TableBody";
 import Grid from "@material-ui/core/Grid";
 import React from "react";
 import {observer, inject} from 'mobx-react'
-import {TCoin} from '../../types'
+import {TCoin, TCoinDiff} from '../../types'
 import CurrenciesStore from "../../stores/currenciesStore";
 
 type ICryptoTable = {
@@ -34,6 +34,10 @@ const colors:{[key:string]: string} ={
 const CryptoTable =  inject('currenciesStore')(
     observer(({classes, currenciesStore}:ICryptoTable) => {
             const items: TCoin[] = currenciesStore!.getItems || [];
+            const diffObj: TCoinDiff=currenciesStore!.getDiffObj;
+
+            currenciesStore?.setItems();
+
 
             console.log(JSON.stringify(items))
 
@@ -69,7 +73,7 @@ const CryptoTable =  inject('currenciesStore')(
                                                         alt="Coin icon"/></TableCell>
                                         <TableCell align="left">{coin.name}</TableCell>
                                         <TableCell align="left">{coin.fullName}</TableCell>
-                                        <TableCell className={classes.columnGreen} align="left">$ {coin.price}</TableCell>
+                                        <TableCell className={diffObj[coin.name]} align="left">$ {coin.price}</TableCell>
                                         <TableCell align="left">${coin.volume24Hour}</TableCell>
                                     </TableRow>
                                 ))}

@@ -1,9 +1,9 @@
 import axios from 'axios';
 import {observable, computed, action} from 'mobx'
-import {TCoin} from "../types";
+import {TCoin, TCoinDiff} from "../types";
 
 
-type TCoinDiff = { [key: string]: string };
+
 
 
 class CurrenciesStore {
@@ -15,6 +15,13 @@ class CurrenciesStore {
     @computed
     get getItems() {
         return this.items;
+
+    };
+
+
+    @computed
+    get getDiffObj() {
+        return this.diffObj;
 
     };
 
