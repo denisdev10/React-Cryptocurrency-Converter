@@ -16,53 +16,13 @@ import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-
-
-const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-        root: {
-            padding: theme.spacing(10),
-        },
-        paper: {
-            padding: theme.spacing(2),
-            textAlign: 'center',
-            color: theme.palette.text.secondary,
-        },
-        cryptoInputBox: {
-            marginBottom: 20,
-            marginTop: 20,
-        },
-
-        currencyInput: {
-
-            minWidth: 'calc(70%-10px)',
-            marginRight: 10,
-        },
-        currencyType: {
-            minWidth: '30%',
-        },
-        table: {
-            minWidth: 650,
-        },
-        currencyIcon:{
-            width:18,
-            height:18,
-            borderRadius:30,
-        }
-    }),
-);
+import {TCoin} from './types'
+import {CryptoTable, ConverterBlock} from './components'
+import useStyles from './styles'
 
 
 // сначало
-type TCoin = {
-    name: string;
-    fullName: string;
-    imageUrl: string;
-    price: number;
-    volume24Hour: number;
 
-
-}
 // Tcoin - типы свойст
 //чтобы показывало ошибки, в массиве не может быть другого объекта кроме этого
 
@@ -103,71 +63,11 @@ function App() {
 
             <Grid container spacing={3}>
                 <Grid item xs={8}>
+                    <CryptoTable classes={classes} items={allCoins}/>
 
-                    <TableContainer component={Paper}>
-                        <Table className={classes.table} aria-label="simple table">
-                            <TableHead>
-                                <TableRow>
-                                    <TableCell></TableCell>
-                                    <TableCell align="left">Name</TableCell>
-                                    <TableCell align="left">Fullname</TableCell>
-                                    <TableCell align="left">Price</TableCell>
-                                    <TableCell align="left">Volume day</TableCell>
-                                </TableRow>
-                            </TableHead>
-                            <TableBody>
-                                {allCoins.map((coin) => (
-                                    <TableRow key={coin.name}>
-                                        <TableCell><img className={classes.currencyIcon} src={coin.imageUrl} alt="Coin icon"/></TableCell>
-                                        <TableCell align="left">{coin.name}</TableCell>
-                                        <TableCell align="left">{coin.fullName}</TableCell>
-                                        <TableCell align="left">$ {coin.price}</TableCell>
-                                        <TableCell align="left">${coin.volume24Hour}</TableCell>
-                                    </TableRow>
-                                ))}
-                            </TableBody>
-                        </Table>
-                    </TableContainer>
                 </Grid>
                 <Grid item xs={4}>
-                    <Paper className={classes.paper}>
-                        <div className={classes.cryptoInputBox}>
-                            <FormControl className={classes.currencyInput}>
-                                <TextField fullWidth label="Сумма"/>
-                            </FormControl>
-
-                            <FormControl className={classes.currencyType}>
-
-                                <InputLabel id="demo-simple-select-helper-label">Валюта</InputLabel>
-                                <Select id="demo-simple-select" value={10}>
-                                    <MenuItem value={10}>Ten</MenuItem>
-                                    <MenuItem value={20}>Twenty</MenuItem>
-                                    <MenuItem value={30}>Thirty</MenuItem>
-                                </Select>
-                            </FormControl>
-                        </div>
-
-                        <div className={classes.cryptoInputBox}>
-                            <FormControl className={classes.currencyInput}>
-                                <TextField fullWidth label="Сумма"/>
-                            </FormControl>
-
-                            <FormControl className={classes.currencyType}>
-
-                                <InputLabel id="demo-simple-select-helper-label">Валюта</InputLabel>
-                                <Select id="demo-simple-select" value={10}>
-                                    <MenuItem value={10}>Ten</MenuItem>
-                                    <MenuItem value={20}>Twenty</MenuItem>
-                                    <MenuItem value={30}>Thirty</MenuItem>
-                                </Select>
-                            </FormControl>
-                        </div>
-
-                        <Typography variant="h5" component="h5">
-                            73,79 Российский рубль
-                        </Typography>
-
-                    </Paper>
+                    <ConverterBlock classes={classes}/>
                 </Grid>
 
             </Grid>
