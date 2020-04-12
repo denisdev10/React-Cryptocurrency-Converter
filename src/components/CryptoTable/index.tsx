@@ -15,11 +15,28 @@ type ICryptoTable = {
 
         classes:any;
     currenciesStore?: CurrenciesStore;
-}
+};
+
+
+
+
+const colors:{[key:string]: string} ={
+
+    red: '#d8ffc4',
+    green: '#d8ff4',
+};
+
+
+
+
+
 // копанент инжектит саму стору подключает ее и обсервер получает пропс
 const CryptoTable =  inject('currenciesStore')(
     observer(({classes, currenciesStore}:ICryptoTable) => {
             const items: TCoin[] = currenciesStore!.getItems || [];
+
+            console.log(JSON.stringify(items))
+
 
             React.useEffect(() => {
 
@@ -52,7 +69,7 @@ const CryptoTable =  inject('currenciesStore')(
                                                         alt="Coin icon"/></TableCell>
                                         <TableCell align="left">{coin.name}</TableCell>
                                         <TableCell align="left">{coin.fullName}</TableCell>
-                                        <TableCell align="left">$ {coin.price}</TableCell>
+                                        <TableCell className={classes.columnGreen} align="left">$ {coin.price}</TableCell>
                                         <TableCell align="left">${coin.volume24Hour}</TableCell>
                                     </TableRow>
                                 ))}
