@@ -1,4 +1,4 @@
-import {createStyles, makeStyles, Theme} from "@material-ui/core/styles";
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -14,10 +14,8 @@ const useStyles = makeStyles((theme: Theme) =>
             marginBottom: 20,
             marginTop: 20,
         },
-
         currencyInput: {
-
-            minWidth: 'calc(70%-10px)',
+            minWidth: 'calc(70% - 10px)',
             marginRight: 10,
         },
         currencyType: {
@@ -31,15 +29,16 @@ const useStyles = makeStyles((theme: Theme) =>
             height: 18,
             borderRadius: 30,
         },
-
         redColumn: {
             backgroundColor: '#d8ffc4',
         },
         greenColumn: {
             backgroundColor: '#ffdada',
         },
+        rowCurrency: {
+            cursor: 'pointer',
+        },
     }),
 );
-
 
 export default useStyles;

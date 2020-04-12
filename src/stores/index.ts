@@ -6,5 +6,4 @@ const stores = {
     currenciesStore: new CurrenciesStore(),
 };
 
-
 export default stores;
